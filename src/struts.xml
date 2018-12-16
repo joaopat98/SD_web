@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+    <!-- devMode equals debug information and reload everything for every request -->
+    <constant name="struts.devMode" value="true" />
+    <constant name="struts.ui.theme" value="simple" />
+    <constant name = "struts.action.extension" value = ""/>
+
+    <package name="DropMusic" extends="struts-default">
+
+        <default-action-ref name="index" />
+
+        <global-results>
+            <result name="error">/error.jsp</result>
+        </global-results>
+
+        <!-- all exceptions not caught by the application will lead to error.jsp -->
+        <global-exception-mappings>
+            <exception-mapping exception="java.lang.Exception" result="error" />
+        </global-exception-mappings>
+
+        <!-- 'index' action leads to the view provided by index.jsp -->
+
+        <!--<editor-fold desc="User">-->
+        <action name="index">
+            <result>/index.jsp</result>
+        </action>
+
+        <action name="registerPage">
+            <result>/register.jsp</result>
+        </action>
+
+        <action name="login" class="Client.actions.UserAction" method="login">
+            <result name="success">/main.jsp</result>
+            <result name="no_user">/index.jsp</result>
+        </action>
+
+        <action name="register" class="Client.actions.UserAction" method="register">
+            <result name="success">/main.jsp</result>
+            <result name="already_exists">/register.jsp</result>
+        </action>
+
+        <action name="loadUserMenu" class="Client.actions.UserAction" method="loadUserMenu">
+            <result>/user/userMenu.jsp</result>
+        </action>
+        <!--</editor-fold>-->
+
+        <!--<editor-fold desc="Song">-->
+        <action name="songMenu">
+            <result>/song/songMenu.jsp</result>
+        </action>
+
+        <action name="createSongMenu">
+            <result>/song/createSongMenu.jsp</result>
+        </action>
+
+        <action name="createSong" class="Client.actions.SongAction" method="createSong">
+            <result name="success">/song/songMenu.jsp</result>
+        </action>
+
+        <action name="searchSongMenu">
+            <result>/song/searchSongMenu.jsp</result>
+        </action>
+
+        <action name="searchSong" class="Client.actions.SongAction" method="searchSong">
+            <result name="success">/song/searchSongResult.jsp</result>
+        </action>
+
+        <action name="songByIDMenu">
+            <result>/song/songByIDMenu.jsp</result>
+        </action>
+
+        <action name="songDetail" class="Client.actions.SongAction" method="songDetail">
+            <result name="success">/song/songDetail.jsp</result>
+        </action>
+
+        <action name="songEditMenu">
+            <result>/song/songEditMenu.jsp</result>
+        </action>
+
+        <action name="songEdit" class="Client.actions.SongAction" method="editSong">
+            <result name="success">/song/songDetail.jsp</result>
+        </action>
+        <!--</editor-fold>-->
+
+        <!--<editor-fold desc="Artist">-->
+        <action name="artistMenu">
+            <result>/artist/artistMenu.jsp</result>
+        </action>
+
+        <action name="createArtistMenu">
+            <result>/artist/createArtistMenu.jsp</result>
+        </action>
+
+        <action name="createArtist" class="Client.actions.ArtistAction" method="createArtist">
+            <result name="success">/artist/artistMenu.jsp</result>
+        </action>
+
+        <action name="searchArtistMenu">
+            <result>/artist/searchArtistMenu.jsp</result>
+        </action>
+
+        <action name="searchArtist" class="Client.actions.ArtistAction" method="searchArtist">
+            <result name="success">/artist/searchArtistResult.jsp</result>
+        </action>
+
+        <action name="artistByIDMenu">
+            <result>/artist/artistByIDMenu.jsp</result>
+        </action>
+
+        <action name="artistDetail" class="Client.actions.ArtistAction" method="artistDetail">
+            <result name="success">/artist/artistDetail.jsp</result>
+        </action>
+
+        <action name="artistEditMenu">
+            <result>/artist/artistEditMenu.jsp</result>
+        </action>
+
+        <action name="artistEdit" class="Client.actions.ArtistAction" method="editArtist">
+            <result name="success">/artist/artistDetail.jsp</result>
+        </action>
+        <!--</editor-fold>-->
+
+        <!--<editor-fold desc="Album">-->
+        <action name="albumMenu">
+            <result>/album/albumMenu.jsp</result>
+        </action>
+
+        <action name="createAlbumMenu">
+            <result>/album/createAlbumMenu.jsp</result>
+        </action>
+
+        <action name="createAlbum" class="Client.actions.AlbumAction" method="createAlbum">
+            <result name="success">/artist/artistDetail.jsp</result>
+        </action>
+
+        <action name="searchAlbumMenu">
+            <result>/album/searchAlbumMenu.jsp</result>
+        </action>
+
+        <action name="searchAlbum" class="Client.actions.AlbumAction" method="searchAlbum">
+            <result name="success">/album/searchAlbumResult.jsp</result>
+        </action>
+
+        <action name="albumByIDMenu">
+            <result>/album/albumByIDMenu.jsp</result>
+        </action>
+
+        <action name="albumDetail" class="Client.actions.AlbumAction" method="albumDetail">
+            <result name="success">/album/albumDetail.jsp</result>
+        </action>
+
+        <action name="albumEditMenu" class="Client.actions.AlbumAction" method="loadAlbumEditMenu">
+            <result>/album/albumEditMenu.jsp</result>
+        </action>
+
+        <action name="albumEdit" class="Client.actions.AlbumAction" method="editAlbum">
+            <result name="success">/album/albumDetail.jsp</result>
+        </action>
+
+        <action name="addSongToAlbum" class="Client.actions.AlbumAction" method="addSongToAlbum">
+            <result name="success">/album/albumDetail.jsp</result>
+        </action>
+        <!--</editor-fold>-->
+
+        <!--<editor-fold desc="Studio">-->
+        <action name="studioMenu">
+            <result>/studio/studioMenu.jsp</result>
+        </action>
+
+        <action name="createStudioMenu">
+            <result>/studio/createStudioMenu.jsp</result>
+        </action>
+
+        <action name="createStudio" class="Client.actions.StudioAction" method="createStudio">
+            <result name="success">/studio/studioMenu.jsp</result>
+        </action>
+
+        <action name="searchStudioMenu">
+            <result>/studio/searchStudioMenu.jsp</result>
+        </action>
+
+        <action name="searchStudio" class="Client.actions.StudioAction" method="searchStudio">
+            <result name="success">/studio/searchStudioResult.jsp</result>
+        </action>
+
+        <action name="studioByIDMenu">
+            <result>/studio/studioByIDMenu.jsp</result>
+        </action>
+
+        <action name="studioDetail" class="Client.actions.StudioAction" method="studioDetail">
+            <result name="success">/studio/studioDetail.jsp</result>
+        </action>
+
+        <action name="studioEditMenu">
+            <result>/studio/studioEditMenu.jsp</result>
+        </action>
+
+        <action name="studioEdit" class="Client.actions.StudioAction" method="editStudio">
+            <result name="success">/studio/studioDetail.jsp</result>
+        </action>
+        <!--</editor-fold>-->
+
+        <!--<editor-fold desc="Label">-->
+        <action name="labelMenu">
+            <result>/label/labelMenu.jsp</result>
+        </action>
+
+        <action name="createLabelMenu">
+            <result>/label/createLabelMenu.jsp</result>
+        </action>
+
+        <action name="createLabel" class="Client.actions.LabelAction" method="createLabel">
+            <result name="success">/label/labelMenu.jsp</result>
+        </action>
+
+        <action name="searchLabelMenu">
+            <result>/label/searchLabelMenu.jsp</result>
+        </action>
+
+        <action name="searchLabel" class="Client.actions.LabelAction" method="searchLabel">
+            <result name="success">/label/searchLabelResult.jsp</result>
+        </action>
+
+        <action name="labelByIDMenu">
+            <result>/label/labelByIDMenu.jsp</result>
+        </action>
+
+        <action name="labelDetail" class="Client.actions.LabelAction" method="labelDetail">
+            <result name="success">/label/labelDetail.jsp</result>
+        </action>
+
+        <action name="labelEditMenu">
+            <result>/label/labelEditMenu.jsp</result>
+        </action>
+
+        <action name="labelEdit" class="Client.actions.LabelAction" method="editLabel">
+            <result name="success">/label/labelDetail.jsp</result>
+        </action>
+        <!--</editor-fold>-->
+
+        <!--<editor-fold desc="Musician">-->
+        <action name="musicianMenu">
+            <result>/musician/musicianMenu.jsp</result>
+        </action>
+
+        <action name="createMusicianMenu">
+            <result>/musician/createMusicianMenu.jsp</result>
+        </action>
+
+        <action name="createMusician" class="Client.actions.MusicianAction" method="createMusician">
+            <result name="success">/musician/musicianMenu.jsp</result>
+        </action>
+
+        <action name="searchMusicianMenu">
+            <result>/musician/searchMusicianMenu.jsp</result>
+        </action>
+
+        <action name="searchMusician" class="Client.actions.MusicianAction" method="searchMusician">
+            <result name="success">/musician/searchMusicianResult.jsp</result>
+        </action>
+
+        <action name="musicianByIDMenu">
+            <result>/musician/musicianByIDMenu.jsp</result>
+        </action>
+
+        <action name="musicianDetail" class="Client.actions.MusicianAction" method="musicianDetail">
+            <result name="success">/musician/musicianDetail.jsp</result>
+        </action>
+
+        <action name="musicianEditMenu">
+            <result>/musician/musicianEditMenu.jsp</result>
+        </action>
+
+        <action name="musicianEdit" class="Client.actions.MusicianAction" method="editMusician">
+            <result name="success">/musician/musicianDetail.jsp</result>
+        </action>
+        <!--</editor-fold>-->
+
+        <action name="dropboxtoken" class="Client.actions.DropBoxAction" method="setUserCode">
+            <result>/main.jsp</result>
+        </action>
+
+    </package>
+
+
+</struts>
